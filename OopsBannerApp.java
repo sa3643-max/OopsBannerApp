@@ -1,50 +1,20 @@
 public class OopsBannerApp {
-public static void main(String[] args) {
+ public static void main(String[] args) {
 
-        // Letter O (7 rows)
-        String[] O = {
-                " ***** ",
-                "*     *",
-                "*     *",
-                "*     *",
-                "*     *",
-                "*     *",
-                " ***** "
+        // Combine array declaration + initialization using String.join()
+        String[] banner = {
+                String.join("  ", " ***** ", " ***** ", "****** ", " ***** "),
+                String.join("  ", "*     *", "*     *", "*     *", "*     *"),
+                String.join("  ", "*     *", "*     *", "*     *", "*      "),
+                String.join("  ", "*     *", "*     *", "****** ", " ***** "),
+                String.join("  ", "*     *", "*     *", "*      ", "      *"),
+                String.join("  ", "*     *", "*     *", "*      ", "*     *"),
+                String.join("  ", " ***** ", " ***** ", "*      ", " ***** ")
         };
 
-        // Letter P (7 rows)
-        String[] P = {
-                "****** ",
-                "*     *",
-                "*     *",
-                "****** ",
-                "*      ",
-                "*      ",
-                "*      "
-        };
-
-        // Letter S (7 rows)
-        String[] S = {
-                " ***** ",
-                "*     *",
-                "*      ",
-                " ***** ",
-                "      *",
-                "*     *",
-                " ***** "
-        };
-
-        // Loop through each row
-        for (int i = 0; i < 7; i++) {
-
-            String row = String.join("  ",
-                    O[i],   // First O
-                    O[i],   // Second O
-                    P[i],   // P
-                    S[i]    // S
-            );
-
-            System.out.println(row);
+        // Enhanced for-loop to print each line
+        for (String line : banner) {
+            System.out.println(line);
         }
     }
 }
