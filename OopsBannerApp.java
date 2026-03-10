@@ -1,61 +1,85 @@
+import java.util.*;
+
 public class OopsBannerApp {
-public static void main(String[] args) {
 
-        // Build the banner lines using static methods
-        String[] banner = new String[7];
+    // Static Inner Class to hold character and its pattern
+    static class CharacterPattern {
 
-        for (int i = 0; i < 7; i++) {
-            // Combine letters for each row
-            banner[i] = String.join("  ",
-                    getO()[i],   // First O
-                    getO()[i],   // Second O
-                    getP()[i],   // P
-                    getS()[i]    // S
-            );
+        private char character;
+        private String[] pattern;
+
+        // Constructor
+        public CharacterPattern(char character, String[] pattern) {
+            this.character = character;
+            this.pattern = pattern;
         }
 
-        // Print the final banner
-        for (String line : banner) {
+        // Getter methods
+        public char getCharacter() {
+            return character;
+        }
+
+        public String[] getPattern() {
+            return pattern;
+        }
+    }
+
+    public static void main(String[] args) {
+
+        List<CharacterPattern> patternList = new ArrayList<>();
+
+        // O pattern
+        patternList.add(new CharacterPattern('O', new String[]{
+                " *** ",
+                "*   *",
+                "*   *",
+                "*   *",
+                " *** "
+        }));
+
+        // P pattern
+        patternList.add(new CharacterPattern('P', new String[]{
+                "**** ",
+                "*   *",
+                "**** ",
+                "*    ",
+                "*    "
+        }));
+
+        // S pattern
+        patternList.add(new CharacterPattern('S', new String[]{
+                " ****",
+                "*    ",
+                " *** ",
+                "    *",
+                "**** "
+        }));
+
+        String word = "OOPS";
+
+        printBanner(word, patternList);
+    }
+
+    public static void printBanner(String word, List<CharacterPattern> patterns) {
+
+        int height = 5;
+
+        for (int i = 0; i < height; i++) {
+
+            StringBuilder line = new StringBuilder();
+
+            for (char ch : word.toCharArray()) {
+
+                for (CharacterPattern cp : patterns) {
+
+                    if (cp.getCharacter() == ch) {
+                        line.append(cp.getPattern()[i]).append("  ");
+                        break;
+                    }
+                }
+            }
+
             System.out.println(line);
         }
-    }
-
-    // Static method to generate letter O
-    public static String[] getO() {
-        return new String[] {
-                " ***** ",
-                "*     *",
-                "*     *",
-                "*     *",
-                "*     *",
-                "*     *",
-                " ***** "
-        };
-    }
-
-    // Static method to generate letter P
-    public static String[] getP() {
-        return new String[] {
-                "****** ",
-                "*     *",
-                "*     *",
-                "****** ",
-                "*      ",
-                "*      ",
-                "*      "
-        };
-    }
-
-    // Static method to generate letter S
-    public static String[] getS() {
-        return new String[] {
-                " ***** ",
-                "*     *",
-                "*      ",
-                " ***** ",
-                "      *",
-                "*     *",
-                " ***** "
-        };
     }
 }
